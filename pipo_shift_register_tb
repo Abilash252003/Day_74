@@ -1,0 +1,55 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///PIPO shift register///
+
+module pipo_tb ();
+  reg CLK, clear;
+  reg [3:0]pi;
+  wire [3:0]po;
+  
+  pipo DUT(.CLK(CLK), .clear(clear), .pi(pi), .po(po));
+  
+  initial 
+    begin
+      CLK=1;
+      forever #5 CLK = ~CLK;  
+    end 
+  
+  initial
+    begin
+      clear = 1'b1;
+      #10;
+      clear = 1'b0;
+      pi    = 4'b1001;
+      #10;
+      pi    = 4'b1110;
+      #10;
+      pi    = 4'b1010;
+      #10;
+      pi    = 4'b0101;
+      #10;
+      pi    = 4'b1011;
+      #10;
+      pi    = 4'b1101;
+      #10;
+      pi    = 4'b0010;
+      #10;
+      pi    = 4'b0011;
+      #10;
+      $finish;
+    end
+   
+  initial
+     begin
+       $dumpfile("dump.vcd");
+       $dumpvars(1);
+     end
+  
+  initial
+    $monitor("simtime = %g, CLK = %b, clear = %b, pi = %b, po = %b", $time, CLK, clear, pi, po);
+  
+endmodule
+  
+      
