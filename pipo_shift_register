@@ -1,0 +1,21 @@
+///100 Days of RTL///
+
+///Abilash P///
+
+///PIPO shift register///
+
+module pipo (CLK, clear, pi, po);
+  input CLK, clear;
+  input [3:0]pi;
+  output reg [3:0]po;
+  
+  always @ (posedge CLK)
+    begin
+      if(clear)
+        po<=4'b0000;
+      else
+        begin
+          po<=pi;
+        end
+    end
+endmodule
